@@ -1,0 +1,10 @@
+- errors.full_messages.each do |msg|
+  - if msg.is_a?(String) && msg.present?
+    .alert.alert-danger.alert-dismissible.fade.show
+      button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+      = content_tag :div, msg
+
+- if @contributions.top_contributors.empty? && errors.empty?
+  .alert.alert-warning.alert-dismissible.fade.show
+    button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;
+    = content_tag :div, 'No Results Found'

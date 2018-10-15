@@ -1,0 +1,22 @@
+$('#main-loader').hide()
+$('#result').html("<%= j render('list', contributors: @contributions.top_contributors) %>")
+
+if (typeof App.notification !== 'undefined') {
+  App.notification.unsubscribe()
+  delete App.notification
+}
+
+App.notification = App.cable.subscriptions.create({
+  channel: "NotificationChannel",
+  job_id: '<%= @flow.id %>'
+}, {
+  connected: function() { },
+  disconnected: function() { },
+  received: function(data) {
+    $this = $(data['id'])
+    $this.attr('href', data['url'])
+    $this.removeClass('disabled')
+    $this.next('.file-loader').remove()
+
+  }
+});

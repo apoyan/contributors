@@ -1,0 +1,14 @@
+table.table.table-borderless.table-sm
+  tbody
+    - contributors.each do |contributor|
+      tr
+        td.contributor-name
+          = contributor.name
+        td
+          .row.col-auto
+            = link_to 'download pdf', '#', class: 'btn disabled', id: "contributor-#{contributor.id}"
+            span.file-loader.loader
+
+.row.col-auto
+  = link_to "download zip (#{contributors.size})", '#', class: 'btn disabled', id: 'download-zip'
+  span.file-loader.loader

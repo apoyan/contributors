@@ -1,0 +1,7 @@
+$('#main-loader').hide()
+$('#result').html("<%= j render('errors', errors: @contributions.errors) %>")
+
+if (typeof App.notification !== 'undefined') {
+  App.notification.unsubscribe()
+  delete App.notification
+}

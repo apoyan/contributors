@@ -1,0 +1,11 @@
+.col-md-5
+  = form_tag :search_contributors, remote: true
+    .form-row
+      .col-10
+        = text_field_tag :url, nil, class: 'form-control form-control-sm mr-sm-2'
+      = submit_tag 'Search', data: { disable_with: 'Search...' }, class: 'btn btn-sm btn-primary', id: 'search'
+
+  #main-loader.loader
+
+  .row
+    #result.col-md-10.mt-sm-4.offset-md-1
