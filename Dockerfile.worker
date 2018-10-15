@@ -1,0 +1,15 @@
+FROM ruby:alpine
+
+RUN apk add --update build-base nodejs git zip
+RUN mkdir /app
+
+WORKDIR /app
+
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
+
+RUN bundle install
+
+COPY . /app
+
+CMD sidekiq -L log/sidekiq.log -q gush -C config/sidekiq.yml
