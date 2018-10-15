@@ -1,3 +1,3 @@
 Sidekiq.configure_server do |config|
-  config.redis = { driver: 'hiredis', url: 'redis://localhost:6379/0' }
+  config.redis = { driver: 'hiredis', url: ENV["REDISTOGO_URL"] }
 end
